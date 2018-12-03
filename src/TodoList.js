@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import 'antd/dist/antd.css';
 import store from './store'
-import {getInputChangeAction, getAddItemAction, getDeleteItemAction} from './store/actionCreators'
+import {getTodoList, getInputChangeAction, getAddItemAction, getDeleteItemAction} from './store/actionCreators'
 import TodoLIstUI from './TodoLIstUI'
 // const data = [
 //   'Racing car sprays burning fuel into crowd.',
@@ -27,6 +27,10 @@ class TodoList extends Component {
       handleBtnClick={this.handleBtnClick}
       handleItemDelete={this.handleItemDelete}/>
     );
+  }
+  componentDidMount() {
+    const action = getTodoList()
+    store.dispatch(action)
   }
   handleInputChange = (e) => {
     const action = getInputChangeAction(e.target.value)
